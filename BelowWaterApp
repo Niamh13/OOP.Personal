@@ -7,21 +7,26 @@ package xpath.belowwaterapp;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * BelowWaterApp
  * @author niamh
+ * 26/10/2023
  */
-public class BelowWaterApp {
 
+public class BelowWaterApp {
     public static void main(String[] args) {
+
         String company, species;
         int totalFish, waste, sold, caught, perWaste, population;
         double fuel, hour, perType, totalFuel, mFuel, mFish;
+        
+        Mackerel mack = new Mackerel();
         
         company = JOptionPane.showInputDialog(null, "Enter Company Name: ");
         
         totalFish = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Total Number of Fish Caught: "));
         fuel = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter Gallon per Hour Used: "));
         hour = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter Time spent Fishing in Hours: "));
+        
         
         for(int i = 0; i<5; i++){
             species = JOptionPane.showInputDialog(null, "Enter the fish species: ");
@@ -30,10 +35,31 @@ public class BelowWaterApp {
                 caught = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Caught: "));
                 sold = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Sold: "));
                 
+                Mackerel m = new Mackerel(caught, sold, totalFish);
                 
+                mack.computeWaste();
+                mack.computeType();
                 
+                perWaste = mack.getPerWaste();
+                perType = mack.getPerFish();
+                
+                JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Mackerel is " + perType);
+            }
+            else if(species.equalsIgnoreCase("whiting")){
+                
+            }
+            else if(species.equalsIgnoreCase("pollack")){
+                
+            }
+            else if(species.equalsIgnoreCase("codling")){
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Invaild Fish species, Please try again.");
+                i=i-1;
             }
         }
         
     }
 }
+

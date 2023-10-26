@@ -21,6 +21,31 @@ Variables:
           sold parts
   - use of inheritance + overload constructor
 
-|  var option - view input or output
-   String species - differ between subclasses
-   var total - total number of fish caughtk
+|  *for each species*
+      private int perWaste             computeWaste()            getPerWaste()
+      private int perType              computeType()             getPerFish()
+      private int totalFish            setTotalFish()
+      private int waste                setWaste()
+      private int sold                 setSold()
+      private int caught               setCaught()
+
+|  Fish class
+      private int population           compute()
+      private int totalFish            getTotalFish()
+      priavte int base
+
+|  BelowWaterApp
+      public String company            main()
+      public int totalFish
+      public double fuel
+      public double hour
+      public String species
+      public int waste
+      public int sold
+      public int caught
+      public int perWaste
+      public double perType
+      public int population
+      public double totalFuel
+      public double mFuel
+      public double mFish

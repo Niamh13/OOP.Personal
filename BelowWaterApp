@@ -4,12 +4,36 @@
 
 package xpath.belowwaterapp;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author niamh
  */
 public class BelowWaterApp {
+
     public static void main(String[] args) {
+        String company, species;
+        int totalFish, waste, sold, caught, perWaste, population;
+        double fuel, hour, perType, totalFuel, mFuel, mFish;
+        
+        company = JOptionPane.showInputDialog(null, "Enter Company Name: ");
+        
+        totalFish = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Total Number of Fish Caught: "));
+        fuel = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter Gallon per Hour Used: "));
+        hour = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter Time spent Fishing in Hours: "));
+        
+        for(int i = 0; i<5; i++){
+            species = JOptionPane.showInputDialog(null, "Enter the fish species: ");
+            
+            if(species.equalsIgnoreCase("mackerel")){
+                caught = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Caught: "));
+                sold = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Sold: "));
+                
+                
+                
+            }
+        }
         
     }
 }

@@ -14,12 +14,14 @@ import javax.swing.JOptionPane;
 
 public class BelowWaterApp {
     public static void main(String[] args) {
-
         String company, species;
         int totalFish, waste, sold, caught, perWaste, population;
         double fuel, hour, perType, totalFuel, mFuel, mFish;
         
         Mackerel mack = new Mackerel();
+        Whiting whit = new Whiting();
+        Pollack poll = new Pollack();
+        Codling cod = new Codling();
         
         company = JOptionPane.showInputDialog(null, "Enter Company Name: ");
         
@@ -46,13 +48,46 @@ public class BelowWaterApp {
                 JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Mackerel is " + perType);
             }
             else if(species.equalsIgnoreCase("whiting")){
+                caught = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Caught: "));
+                sold = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Sold: "));
                 
+                Whiting w = new Whiting(caught, sold, totalFish);
+                
+                whit.computeWaste();
+                whit.computeType();
+                
+                perWaste = whit.getPerWaste();
+                perType = whit.getPerFish();
+                
+                JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Whiting is " + perType);                
             }
             else if(species.equalsIgnoreCase("pollack")){
+                caught = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Caught: "));
+                sold = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Sold: "));
                 
+                Pollack p = new Pollack(caught, sold, totalFish);
+                
+                poll.computeWaste();
+                poll.computeType();
+                
+                perWaste = poll.getPerWaste();
+                perType = poll.getPerFish();
+                
+                JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Pollack is " + perType);
             }
             else if(species.equalsIgnoreCase("codling")){
+                caught = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Caught: "));
+                sold = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Sold: "));
                 
+                Codling c = new Codling(caught, sold, totalFish);
+                
+                cod.computeWaste();
+                cod.computeType();
+                
+                perWaste = cod.getPerWaste();
+                perType = cod.getPerFish();
+                
+                JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Codling is " + perType);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Invaild Fish species, Please try again.");
@@ -62,4 +97,3 @@ public class BelowWaterApp {
         
     }
 }
-

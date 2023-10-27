@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class BelowWaterApp {
     public static void main(String[] args) {
         String company, species;
-        int totalFish, waste, sold, caught, perWaste, population;
+        int totalFish, sold, caught, perWaste, population;
         double fuel, hour, perType, totalFuel, mFuel, mFish;
         
         Fish myFish = new Fish();
@@ -43,11 +43,10 @@ public class BelowWaterApp {
                 
                 Mackerel m = new Mackerel(caught, sold, totalFish);
                 
-                mack.computeWaste();
-                mack.computeType();
+                mack.compute();
                 
                 perWaste = mack.getPerWaste();
-                perType = mack.getPerFish();
+                perType = mack.getPerType();
                 
                 JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Mackerel is " + perType);
             }
@@ -57,11 +56,10 @@ public class BelowWaterApp {
                 
                 Whiting w = new Whiting(caught, sold, totalFish);
                 
-                whit.computeWaste();
-                whit.computeType();
+                whit.compute();
                 
                 perWaste = whit.getPerWaste();
-                perType = whit.getPerFish();
+                perType = whit.getPerType();
                 
                 JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Whiting is " + perType);                
             }
@@ -71,11 +69,10 @@ public class BelowWaterApp {
                 
                 Pollack p = new Pollack(caught, sold, totalFish);
                 
-                poll.computeWaste();
-                poll.computeType();
+                poll.compute();
                 
                 perWaste = poll.getPerWaste();
-                perType = poll.getPerFish();
+                perType = poll.getPerType();
                 
                 JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Pollack is " + perType);
             }
@@ -85,11 +82,10 @@ public class BelowWaterApp {
                 
                 Codling c = new Codling(caught, sold, totalFish);
                 
-                cod.computeWaste();
-                cod.computeType();
+                cod.compute();
                 
                 perWaste = cod.getPerWaste();
-                perType = cod.getPerFish();
+                perType = cod.getPerType();
                 
                 JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Codling is " + perType);
             }

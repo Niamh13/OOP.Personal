@@ -18,6 +18,7 @@ public class BelowWaterApp {
         int totalFish, waste, sold, caught, perWaste, population;
         double fuel, hour, perType, totalFuel, mFuel, mFish;
         
+        Fish myFish = new Fish();
         Mackerel mack = new Mackerel();
         Whiting whit = new Whiting();
         Pollack poll = new Pollack();
@@ -29,6 +30,9 @@ public class BelowWaterApp {
         fuel = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter Gallon per Hour Used: "));
         hour = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter Time spent Fishing in Hours: "));
         
+        Fish f = new Fish(totalFish, fuel, hour);
+        
+        population = myFish.getPopulation();
         
         for(int i = 0; i<5; i++){
             species = JOptionPane.showInputDialog(null, "Enter the fish species: ");
@@ -94,6 +98,8 @@ public class BelowWaterApp {
                 i=i-1;
             }
         }
+        
+        JOptionPane.showMessageDialog(null, "The set population in total is now " + population);
         
     }
 }

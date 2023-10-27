@@ -30,7 +30,7 @@ public class BelowWaterApp {
         fuel = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter Gallon per Hour Used: "));
         hour = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter Time spent Fishing in Hours: "));
         
-        Fish f = new Fish(totalFish, fuel, hour);
+        Fish f = new Fish(totalFish);
         
         population = myFish.getPopulation();
         

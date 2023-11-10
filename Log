@@ -3,3 +3,11 @@
   Finished the base of each fish type and fish class
 
   As it stands now the code doesn't work with [Help 1] coming up
+
+10/11/2023
+  Starting on changing to Array of object for edit:
+      1. Add Fish
+      2. Add Boat
+      3. View
+      4. Search
+* Going to use this to refine the App class and add a UI class to go with the super and sub classes *

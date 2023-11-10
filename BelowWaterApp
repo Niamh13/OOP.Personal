@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package xpath.belowwaterapp;
 
 import javax.swing.JOptionPane;
@@ -15,8 +11,8 @@ import javax.swing.JOptionPane;
 public class BelowWaterApp {
     public static void main(String[] args) {
         String company, species;
-        int totalFish, sold, caught, perWaste, population;
-        double fuel, hour, perType, totalFuel, mFuel, mFish;
+        int totalFish, sold, caught, population;
+        double fuel, hour, perType, totalFuel, mFuel, mFish, perWaste;
         
         Fish myFish = new Fish();
         Mackerel mack = new Mackerel();
@@ -43,10 +39,8 @@ public class BelowWaterApp {
                 
                 Mackerel m = new Mackerel(caught, sold, totalFish);
                 
-                mack.compute();
-                
-                perWaste = mack.getPerWaste();
-                perType = mack.getPerType();
+                perWaste = m.computeWaste();
+                perType = m.computeType();
                 
                 JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Mackerel is " + perType);
             }
@@ -58,8 +52,8 @@ public class BelowWaterApp {
                 
                 whit.compute();
                 
-                perWaste = whit.getPerWaste();
-                perType = whit.getPerType();
+                perWaste = w.getPerWaste();
+                perType = w.getPerType();
                 
                 JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Whiting is " + perType);                
             }
@@ -71,8 +65,8 @@ public class BelowWaterApp {
                 
                 poll.compute();
                 
-                perWaste = poll.getPerWaste();
-                perType = poll.getPerType();
+                perWaste = p.getPerWaste();
+                perType = p.getPerType();
                 
                 JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Pollack is " + perType);
             }
@@ -84,8 +78,8 @@ public class BelowWaterApp {
                 
                 cod.compute();
                 
-                perWaste = cod.getPerWaste();
-                perType = cod.getPerType();
+                perWaste = c.getPerWaste();
+                perType = c.getPerType();
                 
                 JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Codling is " + perType);
             }

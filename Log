@@ -8,7 +8,7 @@
   Starting on changing to Array of object for edit:
       1. Add Fish
       2. Add Boat
-      3. View
-      4. Search
+      3. Search
+      4. Print
 * Going to use this to refine the App class and add a UI class to go with the super and sub classes *
 * Would it be more effective and clearer if theres one UI for fish and another for company, going to try with one first *

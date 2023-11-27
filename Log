@@ -14,3 +14,9 @@
 * Would it be more effective and clearer if theres one UI for fish and another for company, going to try with one first *
 
 * Adding in a view game for the user "to go fishing" to see the information on the fish and companys *
+
+
+27/11/23
+  Need to find a way to include inheritance
+  Need to find a way to connect the CoOrdinate class and Fish class (maybe inheritance but which way)
+  Might make a petition sign up to help with making change to have another class

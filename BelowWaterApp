@@ -1,6 +1,5 @@
 package xpath.belowwaterapp;
 
-import javax.swing.JOptionPane;
 
 /**
  * BelowWaterApp
@@ -10,86 +9,7 @@ import javax.swing.JOptionPane;
 
 public class BelowWaterApp {
     public static void main(String[] args) {
-        String company, species;
-        int totalFish, sold, caught, population;
-        double fuel, hour, perType, totalFuel, mFuel, mFish, perWaste;
-        
-        Fish myFish = new Fish();
-        Mackerel mack = new Mackerel();
-        Whiting whit = new Whiting();
-        Pollack poll = new Pollack();
-        Codling cod = new Codling();
-        
-        company = JOptionPane.showInputDialog(null, "Enter Company Name: ");
-        
-        totalFish = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Total Number of Fish Caught: "));
-        fuel = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter Gallon per Hour Used: "));
-        hour = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter Time spent Fishing in Hours: "));
-        
-        Fish f = new Fish(totalFish);
-        
-        population = myFish.getPopulation();
-        
-        for(int i = 0; i<5; i++){
-            species = JOptionPane.showInputDialog(null, "Enter the fish species: ");
-            
-            if(species.equalsIgnoreCase("mackerel")){
-                caught = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Caught: "));
-                sold = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Sold: "));
-                
-                Mackerel m = new Mackerel(caught, sold, totalFish);
-                
-                perWaste = m.computeWaste();
-                perType = m.computeType();
-                
-                JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Mackerel is " + perType);
-            }
-            else if(species.equalsIgnoreCase("whiting")){
-                caught = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Caught: "));
-                sold = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Sold: "));
-                
-                Whiting w = new Whiting(caught, sold, totalFish);
-                
-                whit.compute();
-                
-                perWaste = w.getPerWaste();
-                perType = w.getPerType();
-                
-                JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Whiting is " + perType);                
-            }
-            else if(species.equalsIgnoreCase("pollack")){
-                caught = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Caught: "));
-                sold = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Sold: "));
-                
-                Pollack p = new Pollack(caught, sold, totalFish);
-                
-                poll.compute();
-                
-                perWaste = p.getPerWaste();
-                perType = p.getPerType();
-                
-                JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Pollack is " + perType);
-            }
-            else if(species.equalsIgnoreCase("codling")){
-                caught = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Caught: "));
-                sold = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Number of Fish Sold: "));
-                
-                Codling c = new Codling(caught, sold, totalFish);
-                
-                cod.compute();
-                
-                perWaste = c.getPerWaste();
-                perType = c.getPerType();
-                
-                JOptionPane.showMessageDialog(null, "The percentage wasted is " + perWaste + " and The percentage of Fish caught are Codling is " + perType);
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Invaild Fish species, Please try again.");
-                i=i-1;
-            }
-        }
-        
-        JOptionPane.showMessageDialog(null, "The set population in total is now " + population);
-        
+        HomeGUI myWaterGUI = new HomeGUI();
+        myWaterGUI.setVisible(true);
     }
 }

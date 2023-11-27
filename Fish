@@ -4,10 +4,41 @@
  */
 package xpath.belowwaterapp;
 
+import java.io.Serializable;
+
 /**
- *
- * @author niamh
+ *  Fish
+ *  @author niamh
+ *  26/10/23
  */
-public class Fish {
+public class Fish extends CoOrdinates implements Serializable{
+    
+    private int caught, sold;
+
+    public Fish(int caught, int sold, int over, int down, String type) {
+        super(over, down, type);
+        this.caught = caught;
+        this.sold = sold;
+    }
+
+    
+    
+    
+
+    public void setCaught(int caught) {
+        this.caught = caught;
+    }
+
+    public void setSold(int sold) {
+        this.sold = sold;
+    }
+    
+
+    public void compute() {
+    
+    }
+
+    
+    
     
 }

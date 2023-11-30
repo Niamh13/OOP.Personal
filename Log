@@ -20,3 +20,20 @@
   Need to find a way to include inheritance
   Need to find a way to connect the CoOrdinate class and Fish class (maybe inheritance but which way)
   Might make a petition sign up to help with making change to have another class
+
+
+30/11/23
+  Can use a database to add a display function of the data, plus have the numbers for the fish be sent through Fish to calculate the sum caught and wasted, to go to the CoOrdinate class for presenting the info 
+  Not sure if the Fish and CoOrdinate class willl work for inheritance
+
+  Adding display and a text field to enter date for logs, could possible have a bit for the most fish day for a species
+  Need to construct the results for the squares, either make it a random selected reply (like the class picks a number between 1 and 6 and depending on what it lands out is the ouput) or assign a response for each square
+  ->random may work better
+
+  Need to put a pin in connecting the two classes and just get the application to work then try the connection
+  Only way I can see how this part working is in one class for everything 
+
+  can possible make a search to generlise the table like date 
+
+  - Need to add another class, maybe can make the database the subclass of fish so the waste and total caught
+  - Make the entered not an array just single out put

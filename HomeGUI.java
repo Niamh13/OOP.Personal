@@ -1,8 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package xpath.belowwaterapp;
+package belowwaterappp;
 
 /**
  *
@@ -32,8 +28,8 @@ public class HomeGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(500, 500));
-        setSize(new java.awt.Dimension(360, 573));
+        setMinimumSize(new java.awt.Dimension(350, 580));
+        setSize(new java.awt.Dimension(380, 573));
         getContentPane().setLayout(null);
 
         titleLB.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -78,7 +74,6 @@ public class HomeGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         VeiwGUI veiw = new VeiwGUI();
         veiw.setVisible(true);
-        
     }                                          
 
     /**
@@ -106,6 +101,7 @@ public class HomeGUI extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(HomeGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

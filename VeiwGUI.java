@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package belowwaterappp;
 
 import javax.swing.JOptionPane;
@@ -233,6 +229,12 @@ public class VeiwGUI extends javax.swing.JFrame {
 
     private void goBTNActionPerformed(java.awt.event.ActionEvent evt) {                                      
         // TODO add your handling code here:
+        CoOrdinates myC = new CoOrdinates();
+        myC.setOver(Integer.parseInt(overTF.getText()));
+        myC.setDown(Integer.parseInt(downTF.getText()));
+        myC.compute();
+        String fact = myC.getFact();
+        JOptionPane.showMessageDialog(null, fact);
         
     }                                     
 

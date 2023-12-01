@@ -37,3 +37,8 @@
 
   - Need to add another class, maybe can make the database the subclass of fish so the waste and total caught
   - Make the entered not an array just single out put
+
+01/12/23
+  Got log system and fish to work, with display also
+  Need to figure out one more response for the CoOrdinate, made it tha it picks a number from 1 to 8 and each number refers to a response
+  Want to make it the once the add button is pressed to entered data disappears not just the labels and text fields

@@ -2,32 +2,50 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package xpath.belowwaterapp;
+package belowwaterappp;
 
-import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * View GUI
  * @author niamh
  */
 public class VeiwGUI extends javax.swing.JFrame {
 
-    private ArrayList <Fish> fishes;
+    Connection myConn;
     
     /**
      * Creates new form VeiwGUI
      */
     public VeiwGUI() {
         initComponents();
-        typeCBX.setVisible(false);
         typeLBL.setVisible(false);
+        typeCBX.setVisible(false);
+        dateLB.setVisible(false);
         soldLBL.setVisible(false);
         soldTF.setVisible(false);
         caughtLBL.setVisible(false);
         caughtTF.setVisible(false);
         addBTN.setVisible(false);
-        fishes = new ArrayList<>();
+        dateLB.setVisible(false);
+        dateTF.setVisible(false);
+        getConnection();
+    }
+    
+    private void getConnection(){
+        try{
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/giftdb", "root", "Endless13");
+        } catch (SQLException ex) {
+            System.out.println("Error Connecting:" + ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     /**
@@ -46,11 +64,14 @@ public class VeiwGUI extends javax.swing.JFrame {
         downTF = new javax.swing.JTextField();
         goBTN = new javax.swing.JButton();
         addFishBTN = new javax.swing.JButton();
+        displayBTN = new javax.swing.JButton();
+        dateLB = new javax.swing.JLabel();
+        dateTF = new javax.swing.JTextField();
+        typeLBL = new javax.swing.JLabel();
         typeCBX = new javax.swing.JComboBox<>();
         caughtLBL = new javax.swing.JLabel();
-        soldLBL = new javax.swing.JLabel();
-        typeLBL = new javax.swing.JLabel();
         caughtTF = new javax.swing.JTextField();
+        soldLBL = new javax.swing.JLabel();
         soldTF = new javax.swing.JTextField();
         addBTN = new javax.swing.JButton();
         returnBTN = new javax.swing.JButton();
@@ -60,7 +81,7 @@ public class VeiwGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1000, 1000));
+        setMinimumSize(new java.awt.Dimension(840, 780));
         setSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
@@ -109,7 +130,38 @@ public class VeiwGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(addFishBTN);
-        addFishBTN.setBounds(6, 135, 125, 34);
+        addFishBTN.setBounds(0, 140, 130, 34);
+
+        displayBTN.setBackground(new java.awt.Color(102, 204, 255));
+        displayBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        displayBTN.setText("Display Log");
+        displayBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayBTNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(displayBTN);
+        displayBTN.setBounds(140, 140, 110, 34);
+
+        dateLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        dateLB.setText("Date:");
+        dateLB.setToolTipText("");
+        getContentPane().add(dateLB);
+        dateLB.setBounds(10, 210, 60, 16);
+
+        dateTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateTFActionPerformed(evt);
+            }
+        });
+        getContentPane().add(dateTF);
+        dateTF.setBounds(80, 210, 71, 22);
+
+        typeLBL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        typeLBL.setText("Species: ");
+        typeLBL.setToolTipText("");
+        getContentPane().add(typeLBL);
+        typeLBL.setBounds(10, 240, 60, 16);
 
         typeCBX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "----", "Mackerel", "Pollack", "Codling", "Whiting" }));
         typeCBX.addActionListener(new java.awt.event.ActionListener() {
@@ -118,23 +170,12 @@ public class VeiwGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(typeCBX);
-        typeCBX.setBounds(79, 204, 81, 22);
+        typeCBX.setBounds(80, 240, 82, 22);
 
         caughtLBL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         caughtLBL.setText("Caught:");
         getContentPane().add(caughtLBL);
-        caughtLBL.setBounds(4, 241, 60, 16);
-
-        soldLBL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        soldLBL.setText("Sold:");
-        getContentPane().add(soldLBL);
-        soldLBL.setBounds(2, 269, 50, 16);
-
-        typeLBL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        typeLBL.setText("Species: ");
-        typeLBL.setToolTipText("");
-        getContentPane().add(typeLBL);
-        typeLBL.setBounds(7, 207, 60, 16);
+        caughtLBL.setBounds(10, 270, 60, 16);
 
         caughtTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +183,12 @@ public class VeiwGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(caughtTF);
-        caughtTF.setBounds(81, 238, 71, 22);
+        caughtTF.setBounds(80, 270, 71, 22);
+
+        soldLBL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        soldLBL.setText("Sold:");
+        getContentPane().add(soldLBL);
+        soldLBL.setBounds(20, 300, 50, 16);
 
         soldTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,7 +196,7 @@ public class VeiwGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(soldTF);
-        soldTF.setBounds(81, 266, 71, 22);
+        soldTF.setBounds(80, 300, 71, 22);
 
         addBTN.setText("Add");
         addBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +205,7 @@ public class VeiwGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(addBTN);
-        addBTN.setBounds(50, 300, 60, 23);
+        addBTN.setBounds(50, 330, 60, 23);
 
         returnBTN.setText("Return to Home");
         returnBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -187,9 +233,6 @@ public class VeiwGUI extends javax.swing.JFrame {
 
     private void goBTNActionPerformed(java.awt.event.ActionEvent evt) {                                      
         // TODO add your handling code here:
-        CoOrdinates c = new CoOrdinates();
-        c.setOver(Integer.parseInt(overTF.getText()));
-        c.setDown(Integer.parseInt(downTF.getText()));
         
     }                                     
 
@@ -197,9 +240,9 @@ public class VeiwGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                       
 
-    private void caughtTFActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void dateTFActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
-    }                                        
+    }                                      
 
     private void soldTFActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
@@ -207,31 +250,69 @@ public class VeiwGUI extends javax.swing.JFrame {
 
     private void addFishBTNActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        typeCBX.setVisible(true);
         typeLBL.setVisible(true);
+        typeCBX.setVisible(true);
+        dateLB.setVisible(true);
         soldLBL.setVisible(true);
         soldTF.setVisible(true);
         caughtLBL.setVisible(true);
         caughtTF.setVisible(true);
         addBTN.setVisible(true);
+        dateLB.setVisible(true);
+        dateTF.setVisible(true);
     }                                          
 
     private void addBTNActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
-        //Fish f = new Fish();
-        //int type = typeCBX.getSelectedIndex();
-        //f.setType(type);
-        //f.setCaught(Integer.parseInt(caughtTF.getText()));
-        //f.setSold(Integer.parseInt(soldTF.getText()));
-        //fishes.add(f);
+        // Sending code to fish class and Log class
+        Fish f = new Fish();
+        Log l = new Log();
+        f.setSpecies(typeCBX.getSelectedItem().toString());
+        f.setCaught(Integer.parseInt(caughtTF.getText()));
+        f.setSold(Integer.parseInt(soldTF.getText()));
+        l.setSpecies(typeCBX.getSelectedItem().toString());
+        l.setCaught(Integer.parseInt(caughtTF.getText()));
+        l.setSold(Integer.parseInt(soldTF.getText()));
+        l.setDate(dateTF.getText());
+        f.compute();
+        l.compute();
+        
+        // making the textfields and buttons invisible again once data goes through
+        /*typeLBL.setVisible(false);
+        typeCBX.setVisible(false);
+        dateLB.setVisible(false);
+        soldLBL.setVisible(false);
+        soldTF.setVisible(false);
+        caughtLBL.setVisible(false);
+        caughtTF.setVisible(false);
+        addBTN.setVisible(false);
+        dateLB.setVisible(false);
+        dateTF.setVisible(false);*/
     }                                      
 
     private void returnBTNActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
         HomeGUI myWaterGUI = new HomeGUI();
         myWaterGUI.setVisible(true);
-        
     }                                         
+
+    private void displayBTNActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // Display Log data from database
+         try {
+            Statement myStatement = myConn.createStatement();
+            ResultSet myRs = myStatement.executeQuery("SELECT * FROM log_table");
+            
+            while(myRs.next()){
+                JOptionPane.showMessageDialog(null, myRs.getString("date")+ ", " + myRs.getString("species") + ", " + myRs.getString("caught") + ", " + myRs.getString("sold"));
+            }
+        }
+        catch (SQLException e){
+            System.out.println("Error: " + e);
+        }        
+    }                                          
+
+    private void caughtTFActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
 
     /**
      * @param args the command line arguments
@@ -259,6 +340,7 @@ public class VeiwGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VeiwGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -275,6 +357,9 @@ public class VeiwGUI extends javax.swing.JFrame {
     private javax.swing.JLabel caughtLBL;
     private javax.swing.JTextField caughtTF;
     private javax.swing.JLabel coOrdLB;
+    private javax.swing.JLabel dateLB;
+    private javax.swing.JTextField dateTF;
+    private javax.swing.JButton displayBTN;
     private javax.swing.JTextField downTF;
     private javax.swing.JButton goBTN;
     private javax.swing.JButton jButton1;

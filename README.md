@@ -1,4 +1,5 @@
 # OOP.Personal
+Using Database fishDB
 
 Week 6: Checkpoint 1
     - Proposal and Class Diagram

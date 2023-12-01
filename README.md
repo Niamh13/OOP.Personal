@@ -12,4 +12,4 @@ Week 9: User Interface
                        ~ should be complete and navigatable (doesn't need to work yet)
                 + .txt file with group github link (needs to be used throughout the project)
 
-Week : Indiviual Sections
+Week 11: Indiviual Sections

@@ -16,9 +16,3 @@ CREATE TABLE data_table(
     Pwaste double,
     totals int
 );
-
-CREATE TABLE output_table AS 
-SELECT species AS species, SUM(sold) AS sold, SUM(caught) AS caught
-FROM fishdb.log_table
-GROUP BY species;
-

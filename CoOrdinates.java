@@ -87,7 +87,7 @@ public class CoOrdinates {
                             fact = "You caught a... Oops, a Seagull stole your fish, guess they were hungry";
                         }
                         case 7 -> {
-                            fact = "";
+                            fact = "CAREFUl, you got a Octupus. \n You better throw it.";
                         }
                         case 8 -> {
                             fact = "Hard Luck, none of the fish were interested in your bait";

@@ -50,8 +50,12 @@ public class CoOrdinates {
     
     public void compute(){
         try {
+            int min = 1;
+            int max = 8;
             Random rand = new Random();
-            int i = rand.nextInt(8);
+            int i = rand.nextInt(max - min + 1) + min;
+            JOptionPane.showMessageDialog(null, i);
+            
             Statement myStatement = myConn.createStatement();
             if(over>0 && over<=5){
                 if(down>0 && down<=6){

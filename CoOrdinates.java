@@ -97,7 +97,7 @@ public class CoOrdinates {
                         }
                         case 4 -> {
                             
-                            fact = "You caught a POLLOCK!\nPollock can grow to 105cm with living for up to 22 years. Pollock is found in a array of everyday products like fish sticks and McDonald's fillet-O-fish sandwiches.\n" + pCaught + " pollock have been logged as wasted, with \n" + pSold +" pollock sold.";
+                            fact = "You caught a POLLOCK!\nPollock can grow to 105cm (about the length of a baseball bat) with living for up to 22 years. Pollock is found in a array of everyday products like fish sticks and McDonald's fillet-O-fish sandwiches.\n" + pCaught + " pollock have been logged as wasted, with \n" + pSold +" pollock sold.";
                         }
                         case 5 -> {
                             fact = "CAREFUL, you almost got a shark. Lucky for you, they were on the hunt for some mackerel.";

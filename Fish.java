@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package belowwaterappp;
 
 import java.sql.Connection;
@@ -11,13 +15,11 @@ import java.sql.Statement;
  *  @author niamh
  *  26/10/23
  */
-public class Fish {
+public class Fish extends Log{
     
     Connection myConn;
-    public int caught, sold;
-    private double waste, pWaste, wWaste, cWaste, mWaste;
-    private int total, pTotal, wTotal, cTotal, mTotal;
-    public String species;
+    private int waste;
+    private int total;
     
     public Fish() {
         caught = 0;
@@ -26,23 +28,8 @@ public class Fish {
         getConnection();
     }
 
-    public Fish(int caught, int sold, String species) {
-        this.caught = caught;
-        this.sold = sold;
-        this.species = species;
-    }
-    
-    
-    public void setSpecies(String species) {
-        this.species = species;
-    }
-
-    public void setCaught(int caught) {
-        this.caught = caught;
-    }
-
-    public void setSold(int sold) {
-        this.sold = sold;
+    public Fish(String date, int caught, int sold, String species) {
+        super(date, caught, sold, species);
     }
     
     private void getConnection(){
@@ -56,8 +43,8 @@ public class Fish {
     }
 
     public void compute() {
-        waste = ((sold/caught));
         total = caught;
+        waste = (caught-sold);
         
         try{
             Statement myStatement = myConn.createStatement();

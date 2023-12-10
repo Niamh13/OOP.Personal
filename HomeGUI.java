@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package belowwaterappp;
 
 /**
@@ -32,11 +36,11 @@ public class HomeGUI extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(380, 573));
         getContentPane().setLayout(null);
 
-        titleLB.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        titleLB.setFont(new java.awt.Font("Comic Sans MS", 1, 28)); // NOI18N
         titleLB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLB.setText("Life Below Water");
+        titleLB.setText("Below Water");
         getContentPane().add(titleLB);
-        titleLB.setBounds(80, 50, 200, 50);
+        titleLB.setBounds(30, 50, 270, 60);
 
         datainButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         datainButton.setText("Company Data");
@@ -74,6 +78,7 @@ public class HomeGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         VeiwGUI veiw = new VeiwGUI();
         veiw.setVisible(true);
+        this.dispose();
     }                                          
 
     /**
@@ -119,3 +124,4 @@ public class HomeGUI extends javax.swing.JFrame {
     private javax.swing.JButton viewButton;
     // End of variables declaration                   
 }
+

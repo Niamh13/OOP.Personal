@@ -1,11 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package belowwaterappp;
 
-import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +19,7 @@ import javax.swing.JOptionPane;
 public class VeiwGUI extends javax.swing.JFrame {
 
     Connection myConn;
+    private ArrayList <Log> logData;
     
     /**
      * Creates new form VeiwGUI
@@ -31,12 +36,15 @@ public class VeiwGUI extends javax.swing.JFrame {
         addBTN.setVisible(false);
         dateLB.setVisible(false);
         dateTF.setVisible(false);
+        searchBTN.setVisible(false);
+        deleteBTN.setVisible(false);
         getConnection();
+        logData = new ArrayList<>();
     }
     
     private void getConnection(){
         try{
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/giftdb", "root", "Endless13");
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/fishdb", "root", "Endless13");
         } catch (SQLException ex) {
             System.out.println("Error Connecting:" + ex.getMessage());
         } catch (Exception ex) {
@@ -60,7 +68,7 @@ public class VeiwGUI extends javax.swing.JFrame {
         downTF = new javax.swing.JTextField();
         goBTN = new javax.swing.JButton();
         addFishBTN = new javax.swing.JButton();
-        displayBTN = new javax.swing.JButton();
+        deleteFishBTN = new javax.swing.JButton();
         dateLB = new javax.swing.JLabel();
         dateTF = new javax.swing.JTextField();
         typeLBL = new javax.swing.JLabel();
@@ -71,6 +79,10 @@ public class VeiwGUI extends javax.swing.JFrame {
         soldTF = new javax.swing.JTextField();
         addBTN = new javax.swing.JButton();
         returnBTN = new javax.swing.JButton();
+        displayBTN = new javax.swing.JButton();
+        searchFishBTN = new javax.swing.JButton();
+        searchBTN = new javax.swing.JButton();
+        deleteBTN = new javax.swing.JButton();
         bgLBL = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
@@ -128,6 +140,90 @@ public class VeiwGUI extends javax.swing.JFrame {
         getContentPane().add(addFishBTN);
         addFishBTN.setBounds(0, 140, 130, 34);
 
+        deleteFishBTN.setBackground(new java.awt.Color(102, 204, 255));
+        deleteFishBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        deleteFishBTN.setText("Delete Log");
+        deleteFishBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteFishBTNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(deleteFishBTN);
+        deleteFishBTN.setBounds(140, 180, 110, 34);
+
+        dateLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        dateLB.setText("Date:");
+        dateLB.setToolTipText("");
+        getContentPane().add(dateLB);
+        dateLB.setBounds(10, 240, 60, 16);
+
+        dateTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateTFActionPerformed(evt);
+            }
+        });
+        getContentPane().add(dateTF);
+        dateTF.setBounds(80, 240, 71, 22);
+
+        typeLBL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        typeLBL.setText("Species: ");
+        typeLBL.setToolTipText("");
+        getContentPane().add(typeLBL);
+        typeLBL.setBounds(10, 270, 60, 16);
+
+        typeCBX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "----", "Mackerel", "Pollock", "Codling", "Whiting" }));
+        typeCBX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeCBXActionPerformed(evt);
+            }
+        });
+        getContentPane().add(typeCBX);
+        typeCBX.setBounds(80, 270, 82, 22);
+
+        caughtLBL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        caughtLBL.setText("Caught:");
+        getContentPane().add(caughtLBL);
+        caughtLBL.setBounds(10, 300, 60, 16);
+
+        caughtTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caughtTFActionPerformed(evt);
+            }
+        });
+        getContentPane().add(caughtTF);
+        caughtTF.setBounds(80, 300, 71, 22);
+
+        soldLBL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        soldLBL.setText("Sold:");
+        getContentPane().add(soldLBL);
+        soldLBL.setBounds(20, 330, 50, 16);
+
+        soldTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                soldTFActionPerformed(evt);
+            }
+        });
+        getContentPane().add(soldTF);
+        soldTF.setBounds(80, 330, 71, 22);
+
+        addBTN.setText("Add");
+        addBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBTNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(addBTN);
+        addBTN.setBounds(50, 360, 60, 23);
+
+        returnBTN.setText("Return to Home");
+        returnBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnBTNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(returnBTN);
+        returnBTN.setBounds(655, 10, 160, 40);
+
         displayBTN.setBackground(new java.awt.Color(102, 204, 255));
         displayBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         displayBTN.setText("Display Log");
@@ -139,78 +235,34 @@ public class VeiwGUI extends javax.swing.JFrame {
         getContentPane().add(displayBTN);
         displayBTN.setBounds(140, 140, 110, 34);
 
-        dateLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        dateLB.setText("Date:");
-        dateLB.setToolTipText("");
-        getContentPane().add(dateLB);
-        dateLB.setBounds(10, 210, 60, 16);
-
-        dateTF.addActionListener(new java.awt.event.ActionListener() {
+        searchFishBTN.setBackground(new java.awt.Color(102, 204, 255));
+        searchFishBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        searchFishBTN.setText("Search Log");
+        searchFishBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateTFActionPerformed(evt);
+                searchFishBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(dateTF);
-        dateTF.setBounds(80, 210, 71, 22);
+        getContentPane().add(searchFishBTN);
+        searchFishBTN.setBounds(0, 180, 130, 34);
 
-        typeLBL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        typeLBL.setText("Species: ");
-        typeLBL.setToolTipText("");
-        getContentPane().add(typeLBL);
-        typeLBL.setBounds(10, 240, 60, 16);
-
-        typeCBX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "----", "Mackerel", "Pollack", "Codling", "Whiting" }));
-        typeCBX.addActionListener(new java.awt.event.ActionListener() {
+        searchBTN.setText("Search");
+        searchBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                typeCBXActionPerformed(evt);
+                searchBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(typeCBX);
-        typeCBX.setBounds(80, 240, 82, 22);
+        getContentPane().add(searchBTN);
+        searchBTN.setBounds(60, 270, 90, 23);
 
-        caughtLBL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        caughtLBL.setText("Caught:");
-        getContentPane().add(caughtLBL);
-        caughtLBL.setBounds(10, 270, 60, 16);
-
-        caughtTF.addActionListener(new java.awt.event.ActionListener() {
+        deleteBTN.setText("Delete");
+        deleteBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                caughtTFActionPerformed(evt);
+                deleteBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(caughtTF);
-        caughtTF.setBounds(80, 270, 71, 22);
-
-        soldLBL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        soldLBL.setText("Sold:");
-        getContentPane().add(soldLBL);
-        soldLBL.setBounds(20, 300, 50, 16);
-
-        soldTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                soldTFActionPerformed(evt);
-            }
-        });
-        getContentPane().add(soldTF);
-        soldTF.setBounds(80, 300, 71, 22);
-
-        addBTN.setText("Add");
-        addBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBTNActionPerformed(evt);
-            }
-        });
-        getContentPane().add(addBTN);
-        addBTN.setBounds(50, 330, 60, 23);
-
-        returnBTN.setText("Return to Home");
-        returnBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                returnBTNActionPerformed(evt);
-            }
-        });
-        getContentPane().add(returnBTN);
-        returnBTN.setBounds(655, 10, 160, 40);
+        getContentPane().add(deleteBTN);
+        deleteBTN.setBounds(60, 300, 80, 23);
 
         bgLBL.setIcon(new javax.swing.ImageIcon("C:\\Users\\niamh\\Downloads\\fishingBG.png")); // NOI18N
         getContentPane().add(bgLBL);
@@ -229,9 +281,43 @@ public class VeiwGUI extends javax.swing.JFrame {
 
     private void goBTNActionPerformed(java.awt.event.ActionEvent evt) {                                      
         // TODO add your handling code here:
+        int mSold, mCaught, wSold, wCaught, cSold, cCaught, pSold, pCaught;
+        
         CoOrdinates myC = new CoOrdinates();
         myC.setOver(Integer.parseInt(overTF.getText()));
         myC.setDown(Integer.parseInt(downTF.getText()));
+        
+        
+        try {
+            Statement myStatement = myConn.createStatement();
+            ResultSet myRs = myStatement.executeQuery("SELECT SUM(Pwaste) AS caught, SUM(totals) AS sold FROM fishdb.data_table WHERE species = 'Mackerel' GROUP BY species");
+            myRs.next();
+            mSold = myRs.getInt("sold");
+            mCaught = myRs.getInt("caught");
+            myC.setMSold(mSold);
+            myC.setMCaught(mCaught);
+            ResultSet myR = myStatement.executeQuery("SELECT SUM(Pwaste) AS caught, SUM(totals) AS sold FROM fishdb.data_table WHERE species = 'Codling' GROUP BY species");
+            myR.next();
+            cSold = myR.getInt("sold");
+            cCaught = myR.getInt("caught");
+            myC.setCSold(cSold);
+            myC.setCCaught(cCaught);
+            ResultSet myRe = myStatement.executeQuery("SELECT SUM(Pwaste) AS caught, SUM(totals) AS sold FROM fishdb.data_table WHERE species = 'Whiting' GROUP BY species");
+            myRe.next();
+            wSold = myRe.getInt("sold");
+            wCaught = myRe.getInt("caught");
+            myC.setWSold(wSold);
+            myC.setWCaught(wCaught);
+            ResultSet myRes = myStatement.executeQuery("SELECT SUM(Pwaste) AS caught, SUM(totals) AS sold FROM fishdb.data_table WHERE species = 'Pollock' GROUP BY species");
+            myRes.next();
+            pSold = myRes.getInt("sold");
+            pCaught = myRes.getInt("caught");
+            myC.setPSold(pSold);
+            myC.setPCaught(pCaught);
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+        }
+                
         myC.compute();
         String fact = myC.getFact();
         JOptionPane.showMessageDialog(null, fact);
@@ -252,69 +338,192 @@ public class VeiwGUI extends javax.swing.JFrame {
 
     private void addFishBTNActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        typeLBL.setVisible(true);
-        typeCBX.setVisible(true);
-        dateLB.setVisible(true);
-        soldLBL.setVisible(true);
-        soldTF.setVisible(true);
-        caughtLBL.setVisible(true);
-        caughtTF.setVisible(true);
-        addBTN.setVisible(true);
-        dateLB.setVisible(true);
-        dateTF.setVisible(true);
+        if(addBTN.isVisible() == false){
+            typeLBL.setVisible(true);
+            typeCBX.setVisible(true);
+            dateLB.setVisible(true);
+            soldLBL.setVisible(true);
+            soldTF.setVisible(true);
+            caughtLBL.setVisible(true);
+            caughtTF.setVisible(true);
+            addBTN.setVisible(true);
+            dateLB.setVisible(true);
+            dateTF.setVisible(true);
+            searchBTN.setVisible(false);
+            deleteBTN.setVisible(false);
+        }
+        else if(addBTN.isVisible() == true){
+            typeLBL.setVisible(false);
+            typeCBX.setVisible(false);
+            dateLB.setVisible(false);
+            soldLBL.setVisible(false);
+            soldTF.setVisible(false);
+            caughtLBL.setVisible(false);
+            caughtTF.setVisible(false);
+            addBTN.setVisible(false);
+            dateLB.setVisible(false);
+            dateTF.setVisible(false);
+        }
+        
     }                                          
 
     private void addBTNActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // Sending code to fish class and Log class
         Fish f = new Fish();
         Log l = new Log();
-        f.setSpecies(typeCBX.getSelectedItem().toString());
-        f.setCaught(Integer.parseInt(caughtTF.getText()));
-        f.setSold(Integer.parseInt(soldTF.getText()));
-        l.setSpecies(typeCBX.getSelectedItem().toString());
-        l.setCaught(Integer.parseInt(caughtTF.getText()));
-        l.setSold(Integer.parseInt(soldTF.getText()));
-        l.setDate(dateTF.getText());
+        f.setSpecies1(typeCBX.getSelectedItem().toString());
+        f.setCaught1(Integer.parseInt(caughtTF.getText()));
+        f.setSold1(Integer.parseInt(soldTF.getText()));
+        f.setDate1(dateTF.getText());
+        l.setSpecies1(typeCBX.getSelectedItem().toString());
+        l.setCaught1(Integer.parseInt(caughtTF.getText()));
+        l.setSold1(Integer.parseInt(soldTF.getText()));
+        l.setDate1(dateTF.getText());
+        logData.add(f);
         f.compute();
-        l.compute();
+        l.computeL();
+        
+        caughtTF.setText("");
+        soldTF.setText("");
+        dateTF.setText("");
+        typeCBX.setSelectedIndex(0);
         
         // making the textfields and buttons invisible again once data goes through
-        /*typeLBL.setVisible(false);
+        typeLBL.setVisible(false);
         typeCBX.setVisible(false);
-        dateLB.setVisible(false);
         soldLBL.setVisible(false);
         soldTF.setVisible(false);
         caughtLBL.setVisible(false);
         caughtTF.setVisible(false);
         addBTN.setVisible(false);
         dateLB.setVisible(false);
-        dateTF.setVisible(false);*/
+        dateTF.setVisible(false);
     }                                      
 
     private void returnBTNActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
         HomeGUI myWaterGUI = new HomeGUI();
         myWaterGUI.setVisible(true);
+        this.dispose();
     }                                         
 
-    private void displayBTNActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // Display Log data from database
-         try {
-            Statement myStatement = myConn.createStatement();
-            ResultSet myRs = myStatement.executeQuery("SELECT * FROM log_table");
-            
-            while(myRs.next()){
-                JOptionPane.showMessageDialog(null, myRs.getString("date")+ ", " + myRs.getString("species") + ", " + myRs.getString("caught") + ", " + myRs.getString("sold"));
-            }
+    private void deleteFishBTNActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // display the need objects
+        if(deleteBTN.isVisible() == false){
+            deleteBTN.setVisible(true);
+            typeLBL.setVisible(true);
+            typeCBX.setVisible(true);
+            dateTF.setVisible(true);
+            dateLB.setVisible(true);
+            addBTN.setVisible(false);
+            searchBTN.setVisible(false);
+            soldTF.setVisible(false);
+            soldLBL.setVisible(false);
+            caughtTF.setVisible(false);
+            caughtLBL.setVisible(false);
         }
-        catch (SQLException e){
-            System.out.println("Error: " + e);
-        }        
-    }                                          
+        else if(deleteBTN.isVisible() == true){
+            deleteBTN.setVisible(false);
+            typeLBL.setVisible(false);
+            typeCBX.setVisible(false);
+            dateTF.setVisible(false);
+            dateLB.setVisible(false);
+        }
+    }                                             
 
     private void caughtTFActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
     }                                        
+
+    private void displayBTNActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // Display Log data from database
+         if(logData.isEmpty()){
+             JOptionPane.showMessageDialog(null, "No Logged Fishing Data");
+         }
+         else {
+             for(int i = 0; i < logData.size(); i++){
+                 Log e = logData.get(i);
+                 JOptionPane.showMessageDialog(null, "Date: " + e.getDate() + "\nSpecies: " + e.getSpecies() + "\nCaught: " + e.getCaught() + "\nSold: " + e.getSold());
+             }
+         }
+         
+    }                                          
+
+    private void searchFishBTNActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        if(searchBTN.isVisible() == false){
+            typeLBL.setVisible(false);
+            typeCBX.setVisible(false);
+            searchBTN.setVisible(true);
+            dateLB.setVisible(true);
+            dateTF.setVisible(true);
+            soldLBL.setVisible(false);
+            soldTF.setVisible(false);
+            caughtLBL.setVisible(false);
+            caughtTF.setVisible(false);
+            addBTN.setVisible(false);
+            deleteBTN.setVisible(false);
+        }
+        else if(searchBTN.isVisible() == true){
+            typeLBL.setVisible(false);
+            typeCBX.setVisible(false);
+            searchBTN.setVisible(false);
+            dateLB.setVisible(false);
+            dateTF.setVisible(false); 
+        }    
+        
+    }                                             
+
+    private void searchBTNActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        String searchTerm = dateTF.getText();
+        try {
+            Statement myStatement = myConn.createStatement();
+            ResultSet mySet = myStatement.executeQuery("SELECT * FROM log_table WHERE date = '" + searchTerm + "'");
+            
+            while(mySet.next()){
+                if(mySet.getString("date").equalsIgnoreCase(searchTerm)){
+                    JOptionPane.showMessageDialog(null, "Date: " + mySet.getString("date") + "\nSpecies: " + mySet.getString("species") + "\nCaught: " + mySet.getString("caught") + "\nSold: " + mySet.getString("sold"));
+                }
+            }
+            
+            dateTF.setText("");
+            
+        }
+        catch (SQLException e){
+            System.out.println("Error: " + e);
+        }
+    }                                         
+
+    private void deleteBTNActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // veiw delete inputs
+        String term = dateTF.getText();
+        String typeT = typeCBX.getSelectedItem().toString();
+        try {
+            Statement myStatement = myConn.createStatement();
+            ResultSet myRS = myStatement.executeQuery("SELECT * FROM log_table WHERE date = '" + term + "' AND species = '" + typeT + "'");
+            
+            while(myRS.next()){
+                
+                myStatement.executeUpdate("DELETE FROM log_table WHERE date = '" + term + "' AND species = '" + typeT + "'");
+                JOptionPane.showMessageDialog(null, "Item Deleted Successfully");
+                   
+                
+            }
+            
+            dateTF.setText("");
+            typeCBX.setSelectedIndex(0);
+            
+            dateTF.setVisible(false);
+            dateLB.setVisible(false);
+            typeLBL.setVisible(false);
+            typeCBX.setVisible(false);
+            searchBTN.setVisible(false);
+            
+        }
+        catch (SQLException ex){
+            System.out.println("Error: " + ex);
+        }
+    }                                         
 
     /**
      * @param args the command line arguments
@@ -361,12 +570,16 @@ public class VeiwGUI extends javax.swing.JFrame {
     private javax.swing.JLabel coOrdLB;
     private javax.swing.JLabel dateLB;
     private javax.swing.JTextField dateTF;
+    private javax.swing.JButton deleteBTN;
+    private javax.swing.JButton deleteFishBTN;
     private javax.swing.JButton displayBTN;
     private javax.swing.JTextField downTF;
     private javax.swing.JButton goBTN;
     private javax.swing.JButton jButton1;
     private javax.swing.JTextField overTF;
     private javax.swing.JButton returnBTN;
+    private javax.swing.JButton searchBTN;
+    private javax.swing.JButton searchFishBTN;
     private javax.swing.JLabel soldLBL;
     private javax.swing.JTextField soldTF;
     private javax.swing.JLabel titleLBL;
